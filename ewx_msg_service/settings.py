@@ -1,3 +1,4 @@
+# coding:utf-8
 """
 Django settings for ewx_msg_service project.
 
