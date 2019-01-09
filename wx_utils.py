@@ -46,7 +46,7 @@ def get_group(chatid):
     result = res.read()
     res.close()
     body = json.loads(result)
-    if body['code'] == 0:
+    if body['errcode'] == 0:
         return body['chat_info']
     else:
         return None
