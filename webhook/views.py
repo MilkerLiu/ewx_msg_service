@@ -6,6 +6,9 @@ from django.http import JsonResponse
 from webhook.models import GitlabHook
 from wx_utils import *
 
+import sys
+sys.setdefaultencoding('utf-8')
+
 
 def index(request):
     return JsonResponse({"username": "zhiliao", "age": 18})
@@ -92,7 +95,11 @@ def hook(request):
     msgs = data['commits']
     content = '代码提交\n'
     for msg in msgs:
-        content += '* [' + msg['message'] + '](' + msg['url'] + ')\n'
+        text = msg["message"]
+        url = msg["url"]
+        line = "- [%s](%s)\n" % (text, url)
+        content += line
+
     send_group_msg({
         "chatid": hook.group.chatid,
         "msgtype": 'markdown',

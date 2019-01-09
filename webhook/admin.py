@@ -5,6 +5,10 @@ from django.contrib import admin
 from webhook.models import *
 from wx_utils import *
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 
 class WXGroupForm(forms.ModelForm):
     chatid = forms.CharField(help_text='群组的标识ID, 请使用英文字母', label='群组标识')
