@@ -39,8 +39,8 @@ class WXGroupAdmin(admin.ModelAdmin):
             }
             create_group(group)
             send_group_msg({
-                "chatid": self.obj.chatid,
-                "msgtype": self.msgtype,
+                "chatid": obj.chatid,
+                "msgtype": 'text',
                 "safe": 0,
                 "text": {
                     "content": "群组已创建"
