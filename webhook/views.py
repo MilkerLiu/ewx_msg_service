@@ -80,7 +80,7 @@ def index(request):
 
 def hook(request):
     key = request.GET.get('key')
-    hook = GitlabHook.objects.filter(path=key).first()
+    hook = GitlabHook.objects.filter(key=key).first()
     if not hook:
         return JsonResponse({"code": 101, "msg": "未找到hook对象"})
     if not hook.group:
