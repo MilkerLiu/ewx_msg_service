@@ -20,5 +20,6 @@ from webhook.views import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
-    url(r'^hook/', hook)
+    url(r'^hook/', hook),
+    url(r'^send_msg/', send_msg)
 ]

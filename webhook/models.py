@@ -21,6 +21,7 @@ class WXGroup(models.Model):
 class GitlabHook(models.Model):
     key = models.CharField(u'标识', max_length=100, null=False)
     name = models.CharField(u'名称', max_length=100)
+    msg_title = models.CharField(u'消息标题', max_length=100)
     group = models.ForeignKey(WXGroup, verbose_name=u'收消息的群')
     ref_branch = models.CharField(u'关联的分支', max_length=100)
 
@@ -28,7 +29,7 @@ class GitlabHook(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = u'GitLabHook'
+        verbose_name = u'GitLab Hook'
         verbose_name_plural = verbose_name
 
 

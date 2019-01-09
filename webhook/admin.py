@@ -5,9 +5,9 @@ from django.contrib import admin
 from webhook.models import *
 from wx_utils import *
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 
 class WXGroupForm(forms.ModelForm):
@@ -32,8 +32,8 @@ class WXGroupAdmin(admin.ModelAdmin):
         is_create = obj.id is None
         super(WXGroupAdmin, self).save_model(request, obj, form, change)
         if is_create:
-            group = get_group(obj.chatid)
-            if group:
+            res = get_group(obj.chatid)
+            if res.get('errcode', 0) == 0:
                 return
             group = {
                 'chatid': obj.chatid,
@@ -55,7 +55,7 @@ class WXGroupAdmin(admin.ModelAdmin):
 class GitlabHookForm(forms.ModelForm):
     key = forms.CharField(label='标识', help_text='Hook的标识, 例如: ios_release, 则在 gitlab内填入: http://{{domain}}/hook?key=ios_release ')
     name = forms.CharField(label=u'名称', help_text='可识别的名称')
-    ref_branch = forms.CharField(label=u'关联的分支', help_text='关联分支, 例如: refs/heads/master, 则推送 master 分支会进入 hook 流程')
+    ref_branch = forms.CharField(label=u'关联的分支', help_text='关联分支, 例如: master, release/*, feature/*')
 
     class Meta:
         model = WXGroup
