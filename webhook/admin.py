@@ -28,7 +28,7 @@ class WXGroupAdmin(admin.ModelAdmin):
         is_create = obj.id is None
         super(WXGroupAdmin, self).save_model(request, obj, form, change)
         if is_create:
-            group = get_group(obj.chaid)
+            group = get_group(obj.chatid)
             if group:
                 return
             group = {
