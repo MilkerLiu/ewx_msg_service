@@ -5,9 +5,9 @@ from django.contrib import admin
 from webhook.models import *
 from wx_utils import *
 
-# import sys
-# reload(sys)
-# sys.setdefaultencoding('utf8')
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
 class WXGroupForm(forms.ModelForm):
