@@ -21,7 +21,7 @@ class WXGroup(models.Model):
 class GitlabHook(models.Model):
     key = models.CharField(u'标识', max_length=100, null=False)
     name = models.CharField(u'名称', max_length=100)
-    group = models.ForeignKey(WXGroup, verbose_name=u'收消息的群', on_delete=False)
+    group = models.ForeignKey(WXGroup, verbose_name=u'收消息的群')
     ref_branch = models.CharField(u'关联的分支', max_length=100)
 
     def __str__(self):
@@ -33,7 +33,7 @@ class GitlabHook(models.Model):
 
 
 class WXChatMessage(models.Model):
-    group = models.ForeignKey(WXGroup, verbose_name=u'收消息的群', on_delete=False)
+    group = models.ForeignKey(WXGroup, verbose_name=u'收消息的群')
     MSG_TYPE = (
         ('text', '文本消息'),
         ('textcard', '卡片消息'),
