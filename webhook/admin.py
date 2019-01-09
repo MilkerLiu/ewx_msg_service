@@ -39,7 +39,7 @@ class WXGroupAdmin(admin.ModelAdmin):
             }
             create_group(group)
             send_group_msg({
-                "chatid": self.group.chatid,
+                "chatid": self.obj.chatid,
                 "msgtype": self.msgtype,
                 "safe": 0,
                 "text": {
