@@ -39,7 +39,7 @@ def hook_by_push_event(hook, data):
         if not text.startswith('Merge'):
             url = msg["url"]
             author = msg['author']['name']
-            line = "- [%s: %s](%s)\n" % (text, author, url)
+            line = "- [**%s**: %s](%s)\n" % (author, text, url)
             content += line
 
     send_group_msg({
