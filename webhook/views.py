@@ -3,9 +3,7 @@
 from django.http import JsonResponse
 from webhook.models import GitlabHook
 from wx_utils import *
-#
-import sys
-sys.setdefaultencoding('utf-8')
+import ewx_msg_service.settings
 
 
 def index(request):

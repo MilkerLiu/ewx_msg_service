@@ -19,6 +19,9 @@
 
 群创建成功后, 可以在终端进行群成员管理.
 
+示例图:
+![](tmp/s1.jpg)
+
 ### Git WebHook消息转发到微信群
 
 gitlab 的 webhook 触发时, 会触发调用对应的接口.
@@ -45,7 +48,11 @@ http://{domain}/hook?key=test_ios
 
 仅在master分支有push时, 才会有消息转发到 `ios消息群`
 
+示例图:
+![](tmp/s2.jpg)
 
+Webhook消息已markdown格式展示, 如不展示, 需升级企业微信终端版本
 
-
+示例图:
+![](tmp/s3.jpg)
 

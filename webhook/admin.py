@@ -4,10 +4,7 @@ from django import forms
 from django.contrib import admin
 from webhook.models import *
 from wx_utils import *
-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+import ewx_msg_service.settings
 
 
 class WXGroupForm(forms.ModelForm):
@@ -56,6 +53,7 @@ class GitlabHookForm(forms.ModelForm):
     key = forms.CharField(label='标识', help_text='Hook的标识, 例如: ios_release, 则在 gitlab内填入: http://{{domain}}/hook?key=ios_release ')
     name = forms.CharField(label=u'名称', help_text='可识别的名称')
     ref_branch = forms.CharField(label=u'关联的分支', help_text='关联分支, 例如: master, release/*, feature/*')
+    msg_title = forms.CharField(label=u'消息标题', help_text=u'消息发送时展示的标题')
 
     class Meta:
         model = WXGroup
