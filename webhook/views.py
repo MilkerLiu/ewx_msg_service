@@ -91,5 +91,6 @@ def send_msg(request):
     :param request:
     :return:
     """
-    res = send_group_msg(request.body)
+    data = json.load(request.body)
+    res = send_group_msg(data)
     return JsonResponse(res)
