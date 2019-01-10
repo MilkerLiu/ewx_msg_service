@@ -21,7 +21,7 @@ def hook(request):
         return JsonResponse({"code": 102, "msg": "hook对象无群组记录,无法发送消息"})
     data = json.loads(request.body)
 
-    object_kind = request.body.get('object_kind', None)
+    object_kind = data.get('object_kind', None)
     if object_kind == 'push':
         return hook_by_push_event(hook, data)
     elif object_kind == 'merge_request':
@@ -35,13 +35,13 @@ def hook_by_push_event(hook, data):
         return JsonResponse({"code": 103, "msg": "分支不匹配"})
     msgs = data['commits']
     content = '**%s:**\n' % hook.msg_title
-    content += '> 代码提交: %s' % ref
+    content += '> 代码提交: %s  \n' % ref
     for msg in msgs:
         text = msg["message"]
-        if not text.startswith('Merge branch'):
+        if not text.startswith('Merge'):
             url = msg["url"]
             author = msg['author']['name']
-            line = "- [%s:%s](%s)\n" % (text, author, url)
+            line = "- [%s: %s](%s)\n" % (text, author, url)
             content += line
 
     send_group_msg({
