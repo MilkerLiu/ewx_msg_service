@@ -5,8 +5,21 @@ from config.models import *
 
 
 # 企业微信配置
-corpid = ConfigModel.objects.filter(key=CONFIG_EWX_CORP_ID).first().value
-corpsecret = ConfigModel.objects.filter(key=CONFIG_EWX_CORP_SECRET).first().value
+def corpid():
+    cfg = ConfigModel.objects.filter(key=CONFIG_EWX_CORP_ID).first()
+    if cfg:
+        return cfg.value
+    else:
+        return ""
+
+
+def corpsecret():
+    cfg = ConfigModel.objects.filter(key=CONFIG_EWX_CORP_SECRET).first()
+    if cfg:
+        return cfg.value
+    else:
+        return ""
+
 
 get_token_url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s"
 send_group_msg_url = "https://qyapi.weixin.qq.com/cgi-bin/appchat/send?access_token=%s"
@@ -31,7 +44,7 @@ def get_token():
     获取企业微信消息服务的Token
     :return:
     """
-    url = get_token_url % (corpid, corpsecret)
+    url = get_token_url % (corpid(), corpsecret())
     body = request(url)
     return body['access_token']
 
