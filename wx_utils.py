@@ -1,9 +1,12 @@
 # coding: utf-8
 import os, json
 
+from config.models import *
+
+
 # 企业微信配置
-corpid = 'ww1a533286d8aca221'
-corpsecret = 'SSaM6w5xBFBNEvONs5LuXdw6sXfgKA6J1YpYa3bd3X8'
+corpid = ConfigModel.objects.filter(key=CONFIG_EWX_CORP_ID).first().value
+corpsecret = ConfigModel.objects.filter(key=CONFIG_EWX_CORP_SECRET).first().value
 
 get_token_url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s"
 send_group_msg_url = "https://qyapi.weixin.qq.com/cgi-bin/appchat/send?access_token=%s"
