@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+# import sys
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webhook',
+    'config'
 ]
 
 MIDDLEWARE = [
@@ -127,12 +128,11 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ewx_msg_service.settings")
 django.setup()
 
 from django.contrib import admin
-admin.site.site_header = "美篇企业微信消息服务"
-admin.site.site_title = "美篇企业微信消息服务"
+from config.models import *
 
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
+config = ConfigModel.objects.filter(key=CONFIG_SITE_NAME).first()
+if config:
+    admin.site.site_header = config.value
+    admin.site.site_title = config.value
 
 STATIC_URL = '/static/'

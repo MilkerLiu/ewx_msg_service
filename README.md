@@ -1,9 +1,6 @@
 ## 企业微信消息服务
 
 
-用户标识都是用户中文昵称首字母大写的字符串  
-例如: 刘文华  ==> LiuWenHua
-
 ### 企业微信群组创建
 
 创建企业微信群需要填写:
@@ -20,7 +17,7 @@
 群创建成功后, 可以在终端进行群成员管理.
   
 示例图:  
-![](tmp/s1.jpg)
+<img src="tmp/s1.jpg" width="400"/>
 
 ### Git WebHook消息转发到微信群
 
@@ -49,10 +46,10 @@ http://{domain}/hook?key=test_ios
 仅在master分支有push时, 才会有消息转发到 `ios消息群`
 
 示例图:   
-![](tmp/s2.jpg)
+<img src="tmp/s2.jpg" width="400"/>
 
 Webhook消息已markdown格式展示, 如不展示, 需升级企业微信终端版本
 
 示例图:  
-![](tmp/s3.jpg)
+<img src="tmp/s3.jpg" width="400"/>
 
